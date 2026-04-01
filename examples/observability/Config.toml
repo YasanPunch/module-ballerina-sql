@@ -1,0 +1,24 @@
+# ----- Database connection -----
+# These values match the MSSQL container defined in docker-compose.yml.
+dbHost = "localhost"
+dbPort = 1434
+dbName = "observedb"
+dbUser = "sa"
+dbPass = "Test@123456"
+
+# ----- Connection pool -----
+# Required for stable Prometheus metrics across restarts — without this,
+# a random UUID is used as the pool_name metric tag.
+[ballerina.sql]
+poolName = "observe_demo"
+
+# ----- Observability -----
+# Turn on metrics and point them at the Prometheus reporter.
+[ballerina.observe]
+metricsEnabled = true
+metricsReporter = "prometheus"
+
+# Prometheus reporter settings.
+[ballerinax.prometheus]
+port = 9797
+host = "0.0.0.0"
