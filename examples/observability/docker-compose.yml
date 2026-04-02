@@ -1,18 +1,21 @@
-# Spins up MSSQL (database) and Prometheus (metrics collection).
+# Spins up PostgreSQL (database) and Prometheus (metrics collection).
 #
 # Usage:
 #   docker-compose up -d          # start both services
 #   docker-compose down           # stop and remove containers
 
 services:
-  mssql:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-    container_name: observe-mssql
+  postgres:
+    image: postgres:16-alpine
+    container_name: observe-postgres
     ports:
-      - "1434:1433"
+      - "5433:5432"
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Test@123456"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: observedb
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

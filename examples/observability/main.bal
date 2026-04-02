@@ -1,6 +1,6 @@
 // SQL Connection Pool Observability Example
 //
-// A REST API backed by MSSQL that demonstrates the sql module's built-in
+// A REST API backed by PostgreSQL that demonstrates the sql module's built-in
 // observability. This service contains no metric instrumentation code — pool
 // health and connection event timing are emitted automatically by the sql
 // module's HikariCP integration.
@@ -11,13 +11,13 @@
 
 import ballerina/http;
 import ballerina/sql;
-import ballerinax/mssql;
+import ballerinax/postgresql;
 import ballerinax/prometheus as _;
 
 // ---------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------
-// These values are read from Config.toml at startup. They match the MSSQL
+// These values are read from Config.toml at startup. They match the PostgreSQL
 // container defined in docker-compose.yml.
 
 configurable string dbHost = ?;
@@ -29,14 +29,14 @@ configurable string dbPass = ?;
 // ---------------------------------------------------------------------------
 // Database client
 // ---------------------------------------------------------------------------
-// `mssql:Client` manages a HikariCP connection pool internally. Pool
+// `postgresql:Client` manages a HikariCP connection pool internally. Pool
 // health metrics (active/idle/total connections, utilization ratio) and
 // connection event timing (acquisition, usage, creation) are reported
 // automatically when observability is enabled.
 
-final mssql:Client dbClient = check new (
+final postgresql:Client dbClient = check new (
     host = dbHost, port = dbPort, database = dbName,
-    user = dbUser, password = dbPass
+    username = dbUser, password = dbPass
 );
 
 // ---------------------------------------------------------------------------

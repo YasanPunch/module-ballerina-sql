@@ -10,17 +10,15 @@ observabilityIncluded = true
 [[dependency]]
 org = "ballerina"
 name = "sql"
-version = "1.18.0"
-repository = "local"
+version = "1.19.0"
 
 [[dependency]]
 org = "ballerinax"
-name = "mssql"
-version = "1.17.0"
-repository = "local"
+name = "postgresql"
+version = "1.18.0"
 
-# MSSQL JDBC driver
+# PostgreSQL JDBC driver
 [[platform.java21.dependency]]
-groupId = "com.microsoft.sqlserver"
-artifactId = "mssql-jdbc"
-version = "12.8.1.jre11"
+groupId = "org.postgresql"
+artifactId = "postgresql"
+version = "42.7.4"

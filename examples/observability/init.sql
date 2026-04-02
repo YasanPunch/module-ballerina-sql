@@ -1,8 +1,8 @@
 -- Schema and seed data for the Observability example.
--- Targets MSSQL.
+-- Targets PostgreSQL.
 
 CREATE TABLE Students (
-    id          INT IDENTITY(1,1) PRIMARY KEY,
+    id          SERIAL PRIMARY KEY,
     first_name  VARCHAR(50)  NOT NULL,
     last_name   VARCHAR(50)  NOT NULL,
     age         INT          NOT NULL

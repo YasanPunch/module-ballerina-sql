@@ -1,10 +1,10 @@
 # ----- Database connection -----
-# These values match the MSSQL container defined in docker-compose.yml.
+# These values match the PostgreSQL container defined in docker-compose.yml.
 dbHost = "localhost"
-dbPort = 1434
+dbPort = 5433
 dbName = "observedb"
-dbUser = "sa"
-dbPass = "Test@123456"
+dbUser = "postgres"
+dbPass = "postgres"
 
 # ----- Connection pool -----
 # Required for stable Prometheus metrics across restarts — without this,
